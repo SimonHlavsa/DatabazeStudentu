@@ -1,6 +1,8 @@
 package com.DatabezeStudentu;
 
-public class Fakulta implements IFakulta{
+public class Fakulta implements IFakulta {
+
+
 
 
 }
