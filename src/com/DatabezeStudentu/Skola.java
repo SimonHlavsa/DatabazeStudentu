@@ -5,32 +5,21 @@ import java.util.HashMap;
 
 public class Skola {
 
-     public static ArrayList studenti = new ArrayList();
-     public static ArrayList ucitele = new ArrayList();
-     public static ArrayList externiste = new ArrayList();
-     public static HashMap<Integer, String> mapaLidi = new HashMap<>();
-    private static int IDCOUNT = 0;
+    public static ArrayList<Lide> lide = new ArrayList<>();
+    public static HashMap<Integer, String> mapaLidi = new HashMap<>();
+    private static int IDOsoby = 0;
 
+    //PRIDAVANI LIDI
 
-//  PRIDANI OSOB
-    public static void pridatCloveka(String pozice, String jmeno, String prijmeni, String fakulta, String program){
-        studenti.add(new Studenti(IDCOUNT, jmeno, prijmeni, fakulta, pozice, program));
-        mapaLidi.put(IDCOUNT, "Student");
-        IDCOUNT++;
+    public static void pridatCloveka(String pozice, String jmeno, String prijmeni, Fakulta fakulta, String program){
+        lide.add(new Studenti(IDOsoby, jmeno, prijmeni, fakulta, pozice, program));
     }
 
-    public static void pridatCloveka(String pozice, String jmeno, String prijmeni, String fakulta){
-        if (pozice.equals("Učitel")){
-            ucitele.add(new Ucitele(IDCOUNT, jmeno, prijmeni, fakulta, pozice));
-            mapaLidi.put(IDCOUNT, "Učitel");
-            IDCOUNT++;
-
-        }
-        else{
-            externiste.add(new Externiste(IDCOUNT, jmeno, prijmeni, fakulta, pozice));
-            mapaLidi.put(IDCOUNT, "Externista");
-            IDCOUNT++;
+    public static void pridatCloveka(String pozice, String jmeno, String prijmeni, Fakulta fakulta) {
+        if (pozice.equals("Učitel")) {
+            lide.add(new Ucitele(IDOsoby, jmeno, prijmeni, fakulta, pozice));
+        } else {
+            lide.add(new Externiste(IDOsoby, jmeno, prijmeni, fakulta, pozice));
         }
     }
-
 }
