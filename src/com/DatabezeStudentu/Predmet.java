@@ -3,13 +3,15 @@ package com.DatabezeStudentu;
 public class Predmet {
     private final String nazevPredmetu;
     private final int vyucujiciID;
-    private final String vyucujiciCeleJmeno;
+    private final String jmeno;
+    private final String prijmeni;
     private final int pocetKreditu;
 
-    public Predmet(String nazevPredmetu, int vyucujiciID, String vyucujiciCeleJmeno, int pocetKreditu) {
+    public Predmet(String nazevPredmetu, int vyucujiciID, String jmeno, String prijmeni, int pocetKreditu) {
         this.nazevPredmetu = nazevPredmetu;
         this.vyucujiciID = vyucujiciID;
-        this.vyucujiciCeleJmeno = vyucujiciCeleJmeno;
+        this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
         this.pocetKreditu = pocetKreditu;
     }
 
@@ -17,12 +19,8 @@ public class Predmet {
         return nazevPredmetu;
     }
 
-    public int getVyucujiciID() {
-        return vyucujiciID;
-    }
-
     @Override
     public String toString() {
-        return "Předmět: " + nazevPredmetu + ",  ID vyučujícího: " + vyucujiciID + ",  Jméno vyučujícího: " + vyucujiciCeleJmeno + ",  Počet Kreditů: " + pocetKreditu;
+        return "Předmět: " + nazevPredmetu + ",  ID vyučujícího: " + vyucujiciID + ",  Jméno: " + jmeno + ", Příjmení: " + prijmeni + ",  Počet Kreditů: " + pocetKreditu;
     }
 }
