@@ -6,12 +6,7 @@ public class Skola {
 
 
     public static Fakulta[] fakulty = new Fakulta[3];
-    public static ArrayList<Studenti> studenti = new ArrayList<>();
-    public static ArrayList<Ucitele> ucitele = new ArrayList<>();
-    public static ArrayList<Externiste> externiste = new ArrayList<>();
-
-
-   // public static LinkedList<Lide> lide = new LinkedList<>();
+    public static ArrayList<Lide> lide = new ArrayList<>();
   //  public static HashMap<Integer, String> mapaLidi = new HashMap<>();
 
     private static int IDOsoby = 0;
@@ -30,15 +25,15 @@ public class Skola {
 
 
     public static void pridatCloveka(String pozice, String jmeno, String prijmeni, Fakulta fakulta, String program){
-        studenti.add(new Studenti(IDOsoby, jmeno, prijmeni, fakulta, pozice, program));
+        lide.add(new Studenti(IDOsoby, jmeno, prijmeni, fakulta, pozice, program));
     }
 
     public static void pridatCloveka(String pozice, String jmeno, String prijmeni, Fakulta fakulta) {
         if (pozice.equals("Učitel")) {
-            ucitele.add(new Ucitele(IDOsoby, jmeno, prijmeni, fakulta, pozice));
+            lide.add(new Ucitele(IDOsoby, jmeno, prijmeni, fakulta, pozice));
         }
         else {
-            externiste.add(new Externiste(IDOsoby, jmeno, prijmeni, fakulta, pozice));
+            lide.add(new Externiste(IDOsoby, jmeno, prijmeni, fakulta, pozice));
         }
     }
 }
