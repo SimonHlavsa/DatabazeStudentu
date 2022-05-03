@@ -22,10 +22,14 @@ public class Studenti extends Lide{
     }
 
     public void getZnamky(){
-        float prumer;
+        float prumer = 0.0f;
         for (int i = 0; i < hodnoceniPredmetu.size(); i++){
             System.out.println(hodnoceniPredmetu.values());
         }
+        for (float f : hodnoceniPredmetu.values()){
+            prumer += f;
+        }
+        prumer = prumer / hodnoceniPredmetu.size();
     }
 
     @Override

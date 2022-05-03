@@ -36,4 +36,5 @@ public class Skola {
             lide.add(new Externiste(IDOsoby, jmeno, prijmeni, fakulta, pozice));
         }
     }
+
 }
