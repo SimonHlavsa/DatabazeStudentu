@@ -10,10 +10,6 @@ public class Fakulta implements IFakulta {
         this.nazev = nazev;
     }
 
-    public String getNazev() {
-        return nazev;
-    }
-
     @Override
     public String toString() {
         return nazev;

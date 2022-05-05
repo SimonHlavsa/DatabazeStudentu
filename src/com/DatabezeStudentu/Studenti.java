@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Studenti extends Lide{
-    private String program;
+    public String titul;
     private ArrayList<Predmet> odstudovanePredmety = new ArrayList<>();
     private HashMap<String, Integer> hodnoceniPredmetu = new HashMap<>();
 
-    public Studenti(int ID, String jmeno, String prijmeni, Fakulta fakulta, String pozice, String program) {
+    public Studenti(int ID, String jmeno, String prijmeni, Fakulta fakulta, String pozice, String titul) {
         super(ID, jmeno, prijmeni, fakulta, pozice);
-        this.program = program;
+        this.titul = titul;
     }
+
+
 
     public void pridatPredmet(Predmet predmet){
         odstudovanePredmety.add(predmet);
@@ -32,9 +34,10 @@ public class Studenti extends Lide{
         prumer = prumer / hodnoceniPredmetu.size();
     }
 
+
     @Override
     public String toString() {
-        return ID + " " + jmeno + " " + prijmeni + " " + fakulta + " " + pozice + " " + program;
+        return ID + " " + jmeno + " " + prijmeni + " " + fakulta + " " + pozice + " " + titul;
     }
 
 

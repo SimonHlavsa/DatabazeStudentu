@@ -5,6 +5,7 @@ public class Ucitele extends Lide{
         super(ID, jmeno, prijmeni, fakulta, pozice);
     }
 
+
     public void pridatPredmet(String nazevPredmetu, int pocetKreditu){
         Fakulta.predmety.add(new Predmet(nazevPredmetu, super.ID, super.jmeno, super.prijmeni, pocetKreditu ));
         System.out.println("předmět přidán");
@@ -18,15 +19,19 @@ public class Ucitele extends Lide{
             }
         }
     }
-
+/*
     public void zadatZnamku(String predmet, int studentID, Integer znamka) {
-        for (Studenti student : Skola.studenti) {
-            if (student.ID == studentID) {
-                student.novaZnamka(predmet, znamka);
-                System.out.println("známka přidána");
-            } else
-                System.out.println("neplatné ID studenta");
+        for (int i = 0; i < Skola.lide.size(); i++){
+            if (Skola.lide.get(i).pozice.equals("Student")){
+                if (Skola.lide.get(i).ID == studentID) {
+                    System.out.println("známka přidána");
+                } else
+                    System.out.println("neplatné ID studenta");
+            }
         }
+
     }
+
+ */
 
 }
