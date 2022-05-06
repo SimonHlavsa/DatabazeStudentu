@@ -12,6 +12,7 @@ public class Menu {
     public static void menu(){
 
         System.out.println("1 - Přidat osobu");
+        System.out.println("2 - Vypsat osoby");
 
         System.out.println("Vyberte možnost: ");
 
@@ -21,10 +22,21 @@ public class Menu {
         switch (volba){
             case 1:
                 pridatOsobu();
+            case 2:
+                vypsatOsoby();
+
         }
     }
 
-//   PŘIDÁVÁNÍ OSOB
+    //  VYPSÁNÍ OSOB
+    private static void vypsatOsoby(){
+        Lide.vypsatOsoby();
+        menu();
+    }
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //   PŘIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void pridatOsobu() {
         String jmeno;
@@ -103,14 +115,16 @@ public class Menu {
     private static void pridatUcitele(String jmeno, String prijmeni, Fakulta fakulta){
         String pozice = "Učitel";
         Ucitele ucitel = new Ucitele(IDOsoby++,jmeno,prijmeni,fakulta,pozice);
-        Lide.pridatOsobuDoZaznamu(ucitel);
+        Lide.pridatOsobu(ucitel);
+        Lide.ulozitOsoby();
         menu();
     }
 
     private static void pridatExternistu(String jmeno, String prijmeni, Fakulta fakulta){
         String pozice = "Externista";
         Externiste externista = new Externiste(IDOsoby++,jmeno,prijmeni,fakulta,pozice);
-        Lide.pridatOsobuDoZaznamu(externista);
+        Lide.pridatOsobu(externista);
+        Lide.ulozitOsoby();
         menu();
     }
 
@@ -149,7 +163,8 @@ public class Menu {
         }
 
         Studenti student = new Studenti(IDOsoby++,jmeno,prijmeni,fakulta,pozice, titul);
-        Lide.pridatOsobuDoZaznamu(student);
+        Lide.pridatOsobu(student);
+        Lide.ulozitOsoby();
         menu();
     }
 

@@ -1,7 +1,5 @@
 package com.DatabezeStudentu;
 
-import java.util.ArrayList;
-
 public class Skola {
 
 
@@ -12,9 +10,9 @@ public class Skola {
 
     public static void pridatFakulty(){
         if (fakulty[0] == null){
-            Fakulta FIS = new Fakulta("Fakulta informatiky a statistiky");
-            Fakulta FMV = new Fakulta("Fakulta mezinárodních vztahů");
-            Fakulta FMI = new Fakulta("Fakulta financí a účetnictví");
+            Fakulta FIS = new Fakulta("FIS");
+            Fakulta FMV = new Fakulta("FMV");
+            Fakulta FMI = new Fakulta("FMI");
             fakulty[0] = FIS;
             fakulty[1] = FMV;
             fakulty[2] = FMI;

@@ -13,8 +13,6 @@ public class Studenti extends Lide{
         this.titul = titul;
     }
 
-
-
     public void pridatPredmet(Predmet predmet){
         odstudovanePredmety.add(predmet);
     }
