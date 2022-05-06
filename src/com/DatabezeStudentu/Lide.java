@@ -22,9 +22,30 @@ public abstract class Lide {
         this.pozice = pozice;
     }
 
-//    public static void smazatOsobuZeZaznamu(Osoby osobaKOdstraneni){
-//        osoby.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
-//    }
+    public static boolean jeSeznamLidiPrazdny(){
+        boolean jePrazdny = false;
+        if (lide.size() == 0)
+            jePrazdny = true;
+        return jePrazdny;
+    }
+
+    public static String smazatOsobu(int ID){
+        String zprava = null;
+        if (lide.size() == 0)
+            zprava = "Zatím nebyla přidána žádná osoba";
+        else {
+            for (Lide osobaKOdstraneni : lide){
+                if (osobaKOdstraneni.ID == ID){
+                    lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
+                    zprava =  "Osoba byla smazána";
+                    break;
+                }
+                else
+                    zprava =  "Osoba s daným ID neexistuje";
+            }
+        }
+        return zprava;
+    }
 
 //  PRIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,8 +116,11 @@ public abstract class Lide {
 //  VYPSÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static void vypsatOsoby(){
+        System.out.println();
+        System.out.println("Seznam lidí VŠE");
         for (Lide osoba : lide){
             System.out.println(osoba);
+
         }
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------

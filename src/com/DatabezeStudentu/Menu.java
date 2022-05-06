@@ -11,8 +11,10 @@ public class Menu {
 
     public static void menu(){
 
+        System.out.println();
         System.out.println("1 - Přidat osobu");
         System.out.println("2 - Vypsat osoby");
+        System.out.println("3 - Odstranit osobu");
 
         System.out.println("Vyberte možnost: ");
 
@@ -24,19 +26,56 @@ public class Menu {
                 pridatOsobu();
             case 2:
                 vypsatOsoby();
+            case 3:
+                smazatOsobu();
 
         }
     }
 
-    //  VYPSÁNÍ OSOB
+//  ODSTRANIT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private static void smazatOsobu(){
+        if (Lide.jeSeznamLidiPrazdny()){
+            System.out.println("V záznamech není nikdo přidaný");
+            menu();
+        }
+
+        System.out.println("Zadejte ID osoby, kterou chcete osdtranit:");
+        System.out.println("Pro ukončení napišt 'konec'");
+
+
+        if (scanner.hasNextInt()) {
+            int ID = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println(Lide.smazatOsobu(ID));
+            menu();
+        }
+
+        String input = scanner.nextLine();
+        if (input.equals("konec")){
+            menu();
+        }
+        else{
+            System.out.println("neplatný input");
+            smazatOsobu();
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//  VYPSÁNÍ OSOB
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     private static void vypsatOsoby(){
         Lide.vypsatOsoby();
         menu();
     }
-    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    //   PŘIDÁVÁNÍ OSOB
+//   PŘIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void pridatOsobu() {
         String jmeno;
