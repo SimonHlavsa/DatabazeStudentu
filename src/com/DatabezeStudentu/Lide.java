@@ -14,6 +14,7 @@ public abstract class Lide {
     static ArrayList<Lide> lide = new ArrayList<>();
     static String pathLide = "lide.csv";
 
+
     public Lide(int ID, String jmeno, String prijmeni , Fakulta fakulta, String pozice) {
         this.ID = ID;
         this.jmeno = jmeno;
@@ -23,46 +24,38 @@ public abstract class Lide {
     }
 
     public static boolean jeSeznamLidiPrazdny(){
-        boolean jePrazdny = false;
-        if (lide.size() == 0)
-            jePrazdny = true;
-        return jePrazdny;
+        return lide.size() == 0;
     }
 
     public static String smazatOsobu(int ID){
         String zprava = null;
-        if (lide.size() == 0)
-            zprava = "Zatím nebyla přidána žádná osoba";
-        else {
-            for (Lide osobaKOdstraneni : lide){
-                if (osobaKOdstraneni.ID == ID){
-                    lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
-                    zprava =  "Osoba byla smazána";
-                    break;
-                }
-                else
-                    zprava =  "Osoba s daným ID neexistuje";
+        for (Lide osobaKOdstraneni : lide){
+            if (osobaKOdstraneni.ID == ID){
+                lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
+                ulozitOsoby();
+                zprava =  "Osoba byla smazána";
+                break;
             }
+            else
+                zprava =  "Osoba s daným ID neexistuje";
         }
         return zprava;
     }
 
 //  PRIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     public static void pridatOsobu(Lide osoba){
         lide.add(osoba);
-        vypsatOsoby();
     }
 
     public static void ulozitOsoby() {
         try {
             FileWriter lideCSV = new FileWriter(pathLide);
             lideCSV.flush();
-            for (Lide osoba : lide){
+            for (Lide osoba : lide) {
                 lideCSV = new FileWriter(pathLide, true);
                 PrintWriter zapsat = new PrintWriter(lideCSV);
-                zapsat.println(osoba.ID + ";" + osoba.jmeno + ";" + osoba.prijmeni + ";" + osoba.fakulta + ";" + osoba.pozice);
+                zapsat.println(osoba.pripravitProUlozeni());
                 zapsat.close();
             }
         } catch (IOException e){
@@ -120,11 +113,14 @@ public abstract class Lide {
         System.out.println("Seznam lidí VŠE");
         for (Lide osoba : lide){
             System.out.println(osoba);
-
         }
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+    public String pripravitProUlozeni(){
+        return ID + ";" + jmeno + ";" + prijmeni + ";" + fakulta + ";" + pozice ;
+    }
 
     @Override
     public String toString() {

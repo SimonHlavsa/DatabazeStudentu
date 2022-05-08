@@ -32,6 +32,10 @@ public class Studenti extends Lide{
         prumer = prumer / hodnoceniPredmetu.size();
     }
 
+    @Override
+    public String pripravitProUlozeni() {
+        return ID + ";" + jmeno + ";" + prijmeni + ";" + fakulta + ";" + pozice + ";" + titul;
+    }
 
     @Override
     public String toString() {

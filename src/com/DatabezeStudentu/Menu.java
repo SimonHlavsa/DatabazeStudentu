@@ -1,4 +1,3 @@
-
 package com.DatabezeStudentu;
 import java.util.Scanner;
 
@@ -32,11 +31,11 @@ public class Menu {
         }
     }
 
-//  ODSTRANIT OSOBU
+//  SMAZAT OSOBU
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void smazatOsobu(){
         if (Lide.jeSeznamLidiPrazdny()){
-            System.out.println("V záznamech není nikdo přidaný");
+            System.out.println("Zatím nebyla přidána žádná osoba");
             menu();
         }
 
@@ -55,19 +54,18 @@ public class Menu {
         if (input.equals("konec")){
             menu();
         }
+
         else{
             System.out.println("neplatný input");
             smazatOsobu();
         }
     }
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 //  VYPSÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     private static void vypsatOsoby(){
         Lide.vypsatOsoby();
         menu();
