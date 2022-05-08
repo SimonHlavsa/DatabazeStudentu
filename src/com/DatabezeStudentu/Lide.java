@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public abstract class Lide {
     protected int ID;
@@ -39,26 +40,26 @@ public abstract class Lide {
         } catch (Exception ignored){
         }
         for (Lide osoba : lide){
-            if(osoba.jmeno.equals(input)){
+            if(osoba.jmeno.toLowerCase().equals(input)){
                 System.out.println(osoba);
                 nasel = true;
             }
 
         }
         for (Lide osoba : lide){
-            if(osoba.prijmeni.equals(input)){
+            if(osoba.prijmeni.toLowerCase().equals(input)){
                 System.out.println(osoba);
                 nasel = true;
             }
         }
         for (Lide osoba : lide){
-            if(osoba.pozice.equals(input)){
+            if(osoba.pozice.toLowerCase().equals(input)){
                 System.out.println(osoba);
                 nasel = true;
             }
         }
         for (Lide osoba : lide){
-            if(osoba.fakulta.toString().equals(input)){
+            if(osoba.fakulta.toString().toLowerCase().equals(input)){
                 System.out.println(osoba);
                 nasel = true;
             }
@@ -68,9 +69,23 @@ public abstract class Lide {
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//  SMAZAT OSOBU
+//  ZMĚNIT FAKULTU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public static boolean zmenitFakultu(int ID, Fakulta novaFakulta){
+        boolean vratit = false;
+        for (Lide osoba : lide){
+            if (osoba.ID == ID){
+                osoba.fakulta = novaFakulta;
+                vratit = true;
+            }
+        }
+        return vratit;
+    }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+//  SMAZAT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static boolean jeSeznamLidiPrazdny(){
         return lide.size() == 0;
     }

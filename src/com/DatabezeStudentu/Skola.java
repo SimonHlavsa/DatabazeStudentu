@@ -2,8 +2,6 @@ package com.DatabezeStudentu;
 public class Skola {
 
     public static Fakulta[] fakulty = new Fakulta[3];
-  //  public static HashMap<Integer, String> mapaLidi = new HashMap<>();
-
 
     public static void pridatFakulty(){
         if (fakulty[0] == null){

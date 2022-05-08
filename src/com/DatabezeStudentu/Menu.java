@@ -15,17 +15,18 @@ public class Menu {
             System.out.println("1 - Přidat osobu");
             System.out.println("2 - Vypsat osoby");
             System.out.println("3 - Najít osobu");
-            System.out.println("4 - Odstranit osobu");
-            System.out.println("5 - Konec");
+            System.out.println("4 - Změnit fakultu");
+            System.out.println("5 - Odstranit osobu");
+            System.out.println("6 - Konec");
             if (scanner.hasNextInt()){
                 volba = scanner.nextInt();
-                if (volba >= 1 && volba <=5)
+                if (volba >= 1 && volba <=6)
                     input = true;
                 else
-                    System.out.println("Zvolte možnost 1 - 5");
+                    System.out.println("Zvolte možnost 1 - 6");
             }
             else
-                System.out.println("Zvolte možnost 1 - 5");
+                System.out.println("Zvolte možnost 1 - 6");
             scanner.nextLine();
         } while (!input);
 
@@ -37,8 +38,10 @@ public class Menu {
             case 3:
                 najitOsobu();
             case 4:
-                smazatOsobu();
+                zmenitFakultu();
             case 5:
+                smazatOsobu();
+            case 6:
                 System.exit(0);
 
 
@@ -47,9 +50,81 @@ public class Menu {
 
 //  NAJÍT OSOBU
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private static void zmenitFakultu(){
+
+        Fakulta novaFakulta = null;
+
+        if (Lide.jeSeznamLidiPrazdny()){
+            System.out.println("Zatím nebyla přidána žádná osoba");
+            menu();
+        }
+
+        System.out.println("Zadejte ID osoby, pro kterou chcete změnit fakultu");
+        System.out.println("Pro ukončení napišt 'konec'");
+
+
+        if (scanner.hasNextInt()) {
+            int ID = scanner.nextInt();
+            scanner.nextLine();
+
+            boolean input = false;
+            do {
+                System.out.println("Na jakou fakultu chcete osobu přidat?");
+                System.out.println("    1 - FIS");
+                System.out.println("    2 - FMV");
+                System.out.println("    3 - FMI");
+                if (scanner.hasNextInt()){
+                    volba = scanner.nextInt();
+                    if (volba >= 1 && volba <=3)
+                        input = true;
+                    else
+                        System.out.println("Zvolte možnost 1 - 3");
+                }
+                else
+                    System.out.println("Zvolte možnost 1 - 3");
+                scanner.nextLine();
+            } while (!input);
+
+            switch (volba){
+                case 1:
+                    novaFakulta = Skola.fakulty[0];
+                    break;
+                case 2:
+                    novaFakulta = Skola.fakulty[1];
+                    break;
+                case 3:
+                    novaFakulta = Skola.fakulty[2];
+                    break;
+            }
+
+
+            if (Lide.zmenitFakultu(ID, novaFakulta))
+                System.out.println("Fakulta byla změněna");
+            else
+                System.out.println("Osoba s ID " + ID + " neexistuje");
+            menu();
+        }
+
+        String input = scanner.nextLine();
+        if (input.equals("konec")){
+            menu();
+        }
+
+        else{
+            System.out.println("neplatný input");
+            zmenitFakultu();
+        }
+
+    }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //  NAJÍT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void najitOsobu(){
         System.out.println("Zadejte parametr, podle kterého chcete osobu najít:");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().toLowerCase();
         if (Lide.najitOsobu(input)){
             System.out.println("Osoba byla nalezena");
         }
