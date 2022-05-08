@@ -37,18 +37,15 @@ public abstract class Lide {
 
     public static String smazatOsobu(int ID){
         String zprava = null;
-        if (lide.size() == 0)
-            zprava = "Zatím nebyla přidána žádná osoba";
-        else {
-            for (Lide osobaKOdstraneni : lide){
-                if (osobaKOdstraneni.ID == ID){
-                    lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
-                    zprava =  "Osoba byla smazána";
-                    break;
-                }
-                else
-                    zprava =  "Osoba s daným ID neexistuje";
+        for (Lide osobaKOdstraneni : lide){
+            if (osobaKOdstraneni.ID == ID){
+                lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
+                ulozitOsoby();
+                zprava =  "Osoba byla smazána";
+                break;
             }
+            else
+                zprava =  "Osoba s daným ID neexistuje";
         }
         return zprava;
     }
