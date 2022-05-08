@@ -1,3 +1,4 @@
+
 package com.DatabezeStudentu;
 import java.util.Scanner;
 
@@ -5,7 +6,7 @@ public class Menu {
 
     static Scanner scanner = new Scanner(System.in);
 
-    private static int IDOsoby = 1;
+
     private static int volba;
 
     public static void menu(){
@@ -31,11 +32,11 @@ public class Menu {
         }
     }
 
-//  SMAZAT OSOBU
+//  ODSTRANIT OSOBU
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void smazatOsobu(){
         if (Lide.jeSeznamLidiPrazdny()){
-            System.out.println("Zatím nebyla přidána žádná osoba");
+            System.out.println("V záznamech není nikdo přidaný");
             menu();
         }
 
@@ -54,18 +55,19 @@ public class Menu {
         if (input.equals("konec")){
             menu();
         }
-
         else{
             System.out.println("neplatný input");
             smazatOsobu();
         }
     }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 //  VYPSÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     private static void vypsatOsoby(){
         Lide.vypsatOsoby();
         menu();
@@ -151,7 +153,7 @@ public class Menu {
 
     private static void pridatUcitele(String jmeno, String prijmeni, Fakulta fakulta){
         String pozice = "Učitel";
-        Ucitele ucitel = new Ucitele(IDOsoby++,jmeno,prijmeni,fakulta,pozice);
+        Ucitele ucitel = new Ucitele(jmeno,prijmeni,fakulta,pozice);
         Lide.pridatOsobu(ucitel);
         Lide.ulozitOsoby();
         menu();
@@ -159,7 +161,7 @@ public class Menu {
 
     private static void pridatExternistu(String jmeno, String prijmeni, Fakulta fakulta){
         String pozice = "Externista";
-        Externiste externista = new Externiste(IDOsoby++,jmeno,prijmeni,fakulta,pozice);
+        Externiste externista = new Externiste(jmeno,prijmeni,fakulta,pozice);
         Lide.pridatOsobu(externista);
         Lide.ulozitOsoby();
         menu();
@@ -199,7 +201,7 @@ public class Menu {
                 break;
         }
 
-        Studenti student = new Studenti(IDOsoby++,jmeno,prijmeni,fakulta,pozice, titul);
+        Studenti student = new Studenti(jmeno,prijmeni,fakulta,pozice, titul);
         Lide.pridatOsobu(student);
         Lide.ulozitOsoby();
         menu();

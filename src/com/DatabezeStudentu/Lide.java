@@ -12,11 +12,19 @@ public abstract class Lide {
     protected String jmeno, prijmeni, pozice;
     protected Fakulta fakulta;
     static ArrayList<Lide> lide = new ArrayList<>();
+    protected static int IDOsoby = 1;
     static String pathLide = "lide.csv";
-
 
     public Lide(int ID, String jmeno, String prijmeni , Fakulta fakulta, String pozice) {
         this.ID = ID;
+        this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
+        this.fakulta = fakulta;
+        this.pozice = pozice;
+    }
+
+    public Lide(String jmeno, String prijmeni , Fakulta fakulta, String pozice) {
+        this.ID = IDOsoby++;
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
         this.fakulta = fakulta;
@@ -29,21 +37,25 @@ public abstract class Lide {
 
     public static String smazatOsobu(int ID){
         String zprava = null;
-        for (Lide osobaKOdstraneni : lide){
-            if (osobaKOdstraneni.ID == ID){
-                lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
-                ulozitOsoby();
-                zprava =  "Osoba byla smazána";
-                break;
+        if (lide.size() == 0)
+            zprava = "Zatím nebyla přidána žádná osoba";
+        else {
+            for (Lide osobaKOdstraneni : lide){
+                if (osobaKOdstraneni.ID == ID){
+                    lide.removeIf(osoba -> osoba.equals(osobaKOdstraneni));
+                    zprava =  "Osoba byla smazána";
+                    break;
+                }
+                else
+                    zprava =  "Osoba s daným ID neexistuje";
             }
-            else
-                zprava =  "Osoba s daným ID neexistuje";
         }
         return zprava;
     }
 
 //  PRIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public static void pridatOsobu(Lide osoba){
         lide.add(osoba);
     }
@@ -84,6 +96,8 @@ public abstract class Lide {
                             nactiFakultu = Skola.fakulty[2];
                             break;
                     }
+                    if (Lide.IDOsoby < Integer.parseInt(rozdeleno[0]))
+                        Lide.IDOsoby = Integer.parseInt(rozdeleno[0]) + 1;
                     switch (rozdeleno[4]){
                         case "Učitel":
                             Ucitele ucitel = new Ucitele(Integer.parseInt(rozdeleno[0]),rozdeleno[1],rozdeleno[2], nactiFakultu,rozdeleno[4]);
@@ -113,10 +127,10 @@ public abstract class Lide {
         System.out.println("Seznam lidí VŠE");
         for (Lide osoba : lide){
             System.out.println(osoba);
+
         }
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
     public String pripravitProUlozeni(){
         return ID + ";" + jmeno + ";" + prijmeni + ";" + fakulta + ";" + pozice ;
