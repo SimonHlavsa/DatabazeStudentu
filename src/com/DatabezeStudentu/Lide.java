@@ -23,13 +23,53 @@ public abstract class Lide {
         this.pozice = pozice;
     }
 
-    public Lide(String jmeno, String prijmeni , Fakulta fakulta, String pozice) {
-        this.ID = IDOsoby++;
-        this.jmeno = jmeno;
-        this.prijmeni = prijmeni;
-        this.fakulta = fakulta;
-        this.pozice = pozice;
+// NAJÍT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public static boolean najitOsobu(String input){
+        boolean nasel = false;
+        try {
+            int IDInput = Integer.parseInt(input);
+            for (Lide osoba : lide){
+                if (osoba.ID == IDInput){
+                    System.out.println(osoba);
+                    nasel = true;
+                }
+
+            }
+        } catch (Exception ignored){
+        }
+        for (Lide osoba : lide){
+            if(osoba.jmeno.equals(input)){
+                System.out.println(osoba);
+                nasel = true;
+            }
+
+        }
+        for (Lide osoba : lide){
+            if(osoba.prijmeni.equals(input)){
+                System.out.println(osoba);
+                nasel = true;
+            }
+        }
+        for (Lide osoba : lide){
+            if(osoba.pozice.equals(input)){
+                System.out.println(osoba);
+                nasel = true;
+            }
+        }
+        for (Lide osoba : lide){
+            if(osoba.fakulta.toString().equals(input)){
+                System.out.println(osoba);
+                nasel = true;
+            }
+        }
+        return nasel;
     }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  SMAZAT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static boolean jeSeznamLidiPrazdny(){
         return lide.size() == 0;
@@ -49,12 +89,17 @@ public abstract class Lide {
         }
         return zprava;
     }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 //  PRIDÁVÁNÍ OSOB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static void pridatOsobu(Lide osoba){
         lide.add(osoba);
+        ulozitOsoby();
+        nactiOsoby();
     }
 
     public static void ulozitOsoby() {
@@ -73,6 +118,9 @@ public abstract class Lide {
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+//  NACITÁNÍ OSOB
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static void nactiOsoby(){
             lide.clear();
             try {
@@ -93,8 +141,11 @@ public abstract class Lide {
                             nactiFakultu = Skola.fakulty[2];
                             break;
                     }
+
+                    IDOsoby = 0;
                     if (Lide.IDOsoby < Integer.parseInt(rozdeleno[0]))
                         Lide.IDOsoby = Integer.parseInt(rozdeleno[0]) + 1;
+
                     switch (rozdeleno[4]){
                         case "Učitel":
                             Ucitele ucitel = new Ucitele(Integer.parseInt(rozdeleno[0]),rozdeleno[1],rozdeleno[2], nactiFakultu,rozdeleno[4]);
@@ -135,7 +186,7 @@ public abstract class Lide {
 
     @Override
     public String toString() {
-        return ID + " " + jmeno + " " + prijmeni + " " + fakulta + " " + pozice ;
+        return "ID: " + ID + " Jméno: " + jmeno + " " + prijmeni + " Fakulta: " + fakulta + " Pozice: " + pozice ;
     }
 
 }

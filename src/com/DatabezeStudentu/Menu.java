@@ -1,4 +1,3 @@
-
 package com.DatabezeStudentu;
 import java.util.Scanner;
 
@@ -6,20 +5,29 @@ public class Menu {
 
     static Scanner scanner = new Scanner(System.in);
 
-
     private static int volba;
 
     public static void menu(){
 
-        System.out.println();
-        System.out.println("1 - Přidat osobu");
-        System.out.println("2 - Vypsat osoby");
-        System.out.println("3 - Odstranit osobu");
-
-        System.out.println("Vyberte možnost: ");
-
-        volba = scanner.nextInt();
-        scanner.nextLine();
+        boolean input = false;
+        do {
+            System.out.println();
+            System.out.println("1 - Přidat osobu");
+            System.out.println("2 - Vypsat osoby");
+            System.out.println("3 - Najít osobu");
+            System.out.println("4 - Odstranit osobu");
+            System.out.println("5 - Konec");
+            if (scanner.hasNextInt()){
+                volba = scanner.nextInt();
+                if (volba >= 1 && volba <=5)
+                    input = true;
+                else
+                    System.out.println("Zvolte možnost 1 - 5");
+            }
+            else
+                System.out.println("Zvolte možnost 1 - 5");
+            scanner.nextLine();
+        } while (!input);
 
         switch (volba){
             case 1:
@@ -27,12 +35,33 @@ public class Menu {
             case 2:
                 vypsatOsoby();
             case 3:
+                najitOsobu();
+            case 4:
                 smazatOsobu();
+            case 5:
+                System.exit(0);
+
 
         }
     }
 
-//  ODSTRANIT OSOBU
+//  NAJÍT OSOBU
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private static void najitOsobu(){
+        System.out.println("Zadejte parametr, podle kterého chcete osobu najít:");
+        String input = scanner.nextLine();
+        if (Lide.najitOsobu(input)){
+            System.out.println("Osoba byla nalezena");
+        }
+        else
+            System.out.println("Osoba nebyla nalezena");
+        menu();
+    }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //  ODSTRANIT OSOBU
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private static void smazatOsobu(){
         if (Lide.jeSeznamLidiPrazdny()){
@@ -59,6 +88,7 @@ public class Menu {
             System.out.println("neplatný input");
             smazatOsobu();
         }
+
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,7 +185,6 @@ public class Menu {
         String pozice = "Učitel";
         Ucitele ucitel = new Ucitele(jmeno,prijmeni,fakulta,pozice);
         Lide.pridatOsobu(ucitel);
-        Lide.ulozitOsoby();
         menu();
     }
 
@@ -163,7 +192,6 @@ public class Menu {
         String pozice = "Externista";
         Externiste externista = new Externiste(jmeno,prijmeni,fakulta,pozice);
         Lide.pridatOsobu(externista);
-        Lide.ulozitOsoby();
         menu();
     }
 
@@ -203,7 +231,6 @@ public class Menu {
 
         Studenti student = new Studenti(jmeno,prijmeni,fakulta,pozice, titul);
         Lide.pridatOsobu(student);
-        Lide.ulozitOsoby();
         menu();
     }
 

@@ -43,7 +43,7 @@ public class Studenti extends Lide{
 
     @Override
     public String toString() {
-        return ID + " " + jmeno + " " + prijmeni + " " + fakulta + " " + pozice + " " + titul;
+        return  "ID: " + ID + " Jméno: " + jmeno + " " + prijmeni + " Fakulta: " + fakulta + " Pozice: " + pozice + " " + titul;
     }
 
 
